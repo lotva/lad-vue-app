@@ -1,0 +1,4 @@
+{
+    "extends": ["stylelint-config-html/vue", "stylelint-config-clean-order"],
+    "plugins": ["stylelint-plugin-logical-css"]
+}
