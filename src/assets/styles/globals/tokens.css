@@ -1,0 +1,29 @@
+:root {
+    /* Typography */
+
+    --leading: 1.35;
+    --gap: calc(0.117rem + 0.343rem + (1rem * var(--leading) - 1rem));
+    --left-adjustment: -0.07em;
+    --paragraph-width: 24rem;
+    --font-weight: 400;
+
+    /* Colors */
+
+    --color-background--page: 185 255 185;
+    --color-background--surface: 255 255 255;
+    --color-highlight: var(--color-text) / 0.05;
+    --color-text: 0 0 0;
+    --color-accent: var(--color-text);
+    --color-note: var(--color-text);
+    --color-border: var(--color-text) / var(--link-underline-opacity);
+
+    /* Links */
+
+    --link-color: var(--color-text);
+    --link-underline: underline;
+    --link-underline-opacity: 0.15;
+    --link-underline-opacity--hover: 1;
+    --link-underline-thickness: 0.03em;
+
+    color-scheme: light;
+}
