@@ -2,3 +2,6 @@
 
 @import 'globals/box-sizing.css';
 @import 'globals/fonts.css';
+@import 'globals/font-metrics.css';
+@import 'globals/tokens.css';
+@import 'globals/typography.css';

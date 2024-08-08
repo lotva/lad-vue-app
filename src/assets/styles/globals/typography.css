@@ -1,0 +1,146 @@
+/* Links */
+
+a {
+    padding-block: 0.1em 0.3em;
+
+    color: rgb(var(--color-text));
+    text-decoration-color: rgba(var(--color-text) / var(--link-underline-opacity));
+    text-decoration-line: var(--link-underline);
+    text-decoration-thickness: var(--link-underline-thickness);
+    text-decoration-skip-ink: none;
+    text-underline-offset: 0.35em;
+
+    &:hover,
+    &:focus,
+    &.hover {
+        --color-text: var(--link-color);
+        --link-underline-opacity: var(--link-underline-opacity--hover);
+    }
+
+    &:focus-visible {
+        --color-text: var(--link-color);
+        --link-underline-opacity: var(--link-underline-opacity--hover);
+        --link-underline-thickness: 2px;
+
+        outline: none;
+    }
+}
+
+/* Headings */
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    line-height: var(--leading);
+}
+
+h2 {
+    --leading: 1;
+
+    font-size: 1.5em;
+    letter-spacing: -0.03em;
+}
+
+h3 {
+    font-size: inherit;
+}
+
+h1,
+h2,
+h3,
+strong {
+    color: rgb(var(--color-accent));
+}
+
+h2 a,
+h3 a,
+strong a {
+    --color-text: var(--color-accent);
+}
+
+h2 a {
+    text-underline-offset: 0.21em;
+}
+
+/* Text */
+
+p,
+pre {
+    margin: 0;
+}
+
+/* Lists */
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Media */
+
+img,
+video,
+iframe {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+}
+
+img {
+    image-rendering: smooth;
+}
+
+iframe {
+    border: 0;
+}
+
+/* Quotes */
+
+blockquote {
+    margin: 0;
+    padding-inline-start: var(--gap);
+}
+
+/* Emphasis */
+
+small {
+    display: block;
+}
+
+/* Description Lists */
+
+dl {
+    margin-block: 0;
+}
+
+dd {
+    margin-inline-start: 0;
+}
+
+/* Inputs */
+
+input {
+    width: 16em;
+    max-width: 100%;
+    padding: calc(var(--gap) / 2) var(--gap);
+
+    font-family: inherit;
+    font-size: inherit;
+    color: rgb(var(--color-accent));
+    letter-spacing: inherit;
+
+    background-color: rgba(var(--color-highlight));
+    border: 0;
+    border-radius: 5px;
+
+    &::placeholder {
+        opacity: var(--link-underline-opacity);
+    }
+
+    &:focus-visible {
+        outline: 4px solid rgb(var(--link-color));
+    }
+}
