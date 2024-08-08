@@ -23,7 +23,21 @@
     --link-underline: underline;
     --link-underline-opacity: 0.15;
     --link-underline-opacity--hover: 1;
-    --link-underline-thickness: 0.03em;
+    --link-underline-thickness: 0.05em;
 
     color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-background--page: 32 33 36;
+        --color-background--surface: 22 22 22;
+        --color-accent: 211 211 211;
+        --color-text: 191 191 191;
+        --color-note: 117 117 117;
+
+        --link-underline-opacity: 0.35;
+
+        color-scheme: dark;
+    }
 }
