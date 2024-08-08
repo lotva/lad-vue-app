@@ -123,8 +123,8 @@ dd {
 /* Inputs */
 
 input {
-    width: 16em;
-    max-width: 100%;
+    inline-size: 16em;
+    max-inline-size: 100%;
     padding: calc(var(--gap) / 2) var(--gap);
 
     font-family: inherit;
