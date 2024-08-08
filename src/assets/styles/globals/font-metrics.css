@@ -1,0 +1,23 @@
+/* Делает высоту строки равной высоте строчных букв */
+/* Идея: https://seek-oss.github.io/capsize/ */
+
+.metrics-fix,
+.note:not(div, aside),
+p,
+h1,
+h2,
+h3,
+dt,
+dd {
+    &::before {
+        content: '';
+        display: table;
+        margin-block-end: calc(-0.343em - (1em * var(--leading) - 1em) / 2);
+    }
+
+    &::after {
+        content: '';
+        display: table;
+        margin-block-start: calc(-0.117em - (1em * var(--leading) - 1em) / 2);
+    }
+}

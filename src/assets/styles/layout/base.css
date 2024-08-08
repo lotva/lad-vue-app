@@ -1,0 +1,27 @@
+/* Base */
+
+.base {
+    cursor: default;
+
+    padding-inline: 1%;
+
+    font-family: 'Vela Sans', sans-serif;
+    font-size: clamp(20px, 1.7vi, 24px);
+    font-weight: var(--font-weight);
+    line-height: var(--leading);
+    color: rgb(var(--color-text));
+    letter-spacing: 0.025em;
+
+    background-color: rgb(var(--color-background--page));
+
+    @media (width >= 800px) {
+        padding-inline: 2%;
+    }
+}
+
+/* Body */
+
+.base__body {
+    max-inline-size: 1200px;
+    margin: 0 auto;
+}
