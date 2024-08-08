@@ -1,0 +1,10 @@
+.note {
+    font-size: 0.75em;
+    color: rgb(var(--color-note));
+    letter-spacing: 0.04em;
+}
+
+.note--label {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}

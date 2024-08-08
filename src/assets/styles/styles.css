@@ -5,3 +5,11 @@
 @import 'globals/font-metrics.css';
 @import 'globals/tokens.css';
 @import 'globals/typography.css';
+
+/* Layout */
+
+@import 'layout/base.css';
+
+/* Utils */
+
+@import 'utils/note.css';
