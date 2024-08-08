@@ -12,10 +12,10 @@
         "build-only": "vite build",
         "type-check": "vue-tsc --build --force",
         "prettier": "prettier . --check",
-        "stylelint": "stylelint \"src/*.{vue,css}\"",
+        "stylelint": "stylelint \"src/**/*.{vue,css}\"",
         "eslint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
         "lint": "npm run prettier && npm run stylelint && npm run eslint",
-        "format": "prettier . --write && stylelint \"src/*.{vue,css}\" --fix"
+        "format": "prettier . --write && stylelint \"src/**/*.{vue,css}\" --fix"
     },
     "dependencies": {
         "pinia": "^2.1.7",
