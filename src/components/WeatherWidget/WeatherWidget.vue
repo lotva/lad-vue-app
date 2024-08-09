@@ -17,11 +17,17 @@
             class="weather__form"
             @submit.prevent=""
         >
+            <label
+                class="visually-hidden"
+                for="city"
+                >Населённый пункт</label
+            >
             <input
                 v-model="city"
-                :class="{ 'gradient-box--active': isLoading }"
                 class="weather__input gradient-box"
+                :class="{ 'gradient-box--active': isLoading }"
                 type="text"
+                name="city"
                 :placeholder="defaultCity"
                 @input="debouncedFetchWeatherData"
             />
