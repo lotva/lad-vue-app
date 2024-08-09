@@ -3,5 +3,5 @@
 </script>
 
 <template>
-    <WeatherWidget></WeatherWidget>
+    <WeatherWidget class="main__section"></WeatherWidget>
 </template>
