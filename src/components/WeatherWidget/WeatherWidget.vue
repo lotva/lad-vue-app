@@ -2,7 +2,8 @@
     import { useWeather } from './useWeather'
     import { formatRuNumber } from '@/shared/lib/utils/formatRuNumber'
 
-    const { city, defaultCity, weatherData, isLoading, debouncedFetchWeatherData } = useWeather()
+    const { city, defaultCity, weatherData, isLoading, debouncedFetchWeatherData, errorMessage } =
+        useWeather()
 
     debouncedFetchWeatherData()
 </script>
@@ -48,6 +49,9 @@
                     <dd>{{ formatRuNumber(weatherData.wind.speed) }}&thinsp;м/c</dd>
                 </div>
             </dl>
+            <p v-else-if="errorMessage">
+                {{ errorMessage }}
+            </p>
             <p v-else>Данные не найдены.</p>
         </div>
     </section>

@@ -21,6 +21,8 @@ export function useWeather() {
         localStorage.setItem('weatherData', JSON.stringify(newValue))
     })
 
+    const errorMessage = ref<string>('')
+
     const getCityPosition = async () => {
         try {
             const { data } = await axios.get('https://api.openweathermap.org/geo/1.0/direct', {
@@ -43,6 +45,7 @@ export function useWeather() {
             return geo.value
         } catch (err) {
             console.log(`Ошибка при получении геопозиции: ${err}`)
+            errorMessage.value = 'АПИ не ответил на запрос. Попробуйте включить ВПН.'
             return null
         }
     }
@@ -90,6 +93,7 @@ export function useWeather() {
 
     return {
         isLoading,
+        errorMessage,
         city,
         defaultCity,
         weatherData,

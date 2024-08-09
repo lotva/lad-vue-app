@@ -1,7 +1,8 @@
 import { mount } from '@vue/test-utils'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
 
 import WeatherWidget from './WeatherWidget.vue'
+import axios from 'axios'
 
 // Mocks
 
@@ -52,5 +53,15 @@ describe('WeatherWidget', () => {
         await input.setValue('Гродно')
         await wrapper.vm.$nextTick()
         expect(wrapper.vm.isLoading).toBe(true)
+    })
+
+    it('shows an error message when the API call fails', async () => {
+        ;(axios.get as Mock).mockRejectedValueOnce(new Error('Network Error'))
+
+        await wrapper.find('input').setValue('Гродно')
+
+        await wrapper.vm.$nextTick()
+
+        expect(wrapper.text()).toContain('АПИ не ответил на запрос.')
     })
 })
