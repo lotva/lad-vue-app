@@ -1,3 +1,4 @@
 import WeatherWidget from './WeatherWidget.vue'
+import WeatherInline from './WeatherInline.vue'
 
-export default WeatherWidget
+export { WeatherWidget, WeatherInline }

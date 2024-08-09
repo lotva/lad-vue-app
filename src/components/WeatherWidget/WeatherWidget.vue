@@ -1,9 +1,12 @@
 <script setup lang="ts">
     import { useWeather } from './useWeather'
-    import { formatRuNumber } from '@/shared/lib/utils/formatRuNumber'
+    import { useWeatherStore } from '@/stores/weatherStore'
 
-    const { city, defaultCity, weatherData, isLoading, debouncedFetchWeatherData, errorMessage } =
-        useWeather()
+    import WeatherTemperature from './WeatherTemperature.vue'
+    import WeatherWindSpeed from './WeatherWindSpeed.vue'
+
+    const { city, defaultCity, isLoading, debouncedFetchWeatherData, errorMessage } = useWeather()
+    const weatherStore = useWeatherStore()
 
     debouncedFetchWeatherData()
 </script>
@@ -31,22 +34,26 @@
         </form>
         <div class="weather__meta">
             <dl
-                v-if="weatherData"
+                v-if="weatherStore.temperature"
                 class="weather__list"
             >
                 <div class="weather__section">
                     <dt>Температура</dt>
-                    <dd>{{ formatRuNumber(weatherData.main.temp) }}&thinsp;°C</dd>
+                    <dd>
+                        <WeatherTemperature></WeatherTemperature>
+                    </dd>
                 </div>
                 <div class="weather__section">
                     <dt>Облачность</dt>
                     <dd>
-                        {{ weatherData.weather[0].description }}
+                        {{ weatherStore.description }}
                     </dd>
                 </div>
                 <div class="weather__section">
                     <dt>Ветер</dt>
-                    <dd>{{ formatRuNumber(weatherData.wind.speed) }}&thinsp;м/c</dd>
+                    <dd>
+                        <WeatherWindSpeed></WeatherWindSpeed>
+                    </dd>
                 </div>
             </dl>
             <p v-else-if="errorMessage">

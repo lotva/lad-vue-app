@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
+import { setActivePinia, createPinia } from 'pinia'
 
 import WeatherWidget from './WeatherWidget.vue'
 import axios from 'axios'
@@ -28,6 +29,7 @@ describe('WeatherWidget', () => {
     let wrapper: any
 
     beforeEach(() => {
+        setActivePinia(createPinia())
         wrapper = mount(WeatherWidget)
     })
 
@@ -36,21 +38,19 @@ describe('WeatherWidget', () => {
     })
 
     it('updates city field value when input text changes', async () => {
-        const input = wrapper.find('input')
-        await input.setValue('Гродно')
+        await wrapper.find('input').setValue('Гродно')
         expect(wrapper.vm.city).toBe('Гродно')
     })
 
     it('calls API when input text changes', async () => {
-        const input = wrapper.find('input')
         const spy = vi.spyOn(wrapper.vm, 'debouncedFetchWeatherData')
-        await input.setValue('Гродно')
+
+        await wrapper.find('input').setValue('Гродно')
         expect(spy).toHaveBeenCalled()
     })
 
     it('triggers loading state on API call', async () => {
-        const input = wrapper.find('input')
-        await input.setValue('Гродно')
+        await wrapper.find('input').setValue('Гродно')
         await wrapper.vm.$nextTick()
         expect(wrapper.vm.isLoading).toBe(true)
     })
@@ -59,9 +59,7 @@ describe('WeatherWidget', () => {
         ;(axios.get as Mock).mockRejectedValueOnce(new Error('Network Error'))
 
         await wrapper.find('input').setValue('Гродно')
-
         await wrapper.vm.$nextTick()
-
         expect(wrapper.text()).toContain('АПИ не ответил на запрос.')
     })
 })
