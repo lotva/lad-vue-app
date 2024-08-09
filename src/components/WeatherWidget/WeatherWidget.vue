@@ -107,7 +107,6 @@
         --leading: 0.95;
 
         inline-size: 100%;
-        margin-block-start: var(--gap);
         margin-inline-start: -4px;
 
         font-size: 2em;
