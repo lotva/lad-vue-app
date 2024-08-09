@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import { useWeather } from './useWeather'
+    import { formatRuNumber } from '@/shared/lib/utils/formatRuNumber'
 
     const { city, weatherData, isLoading, debouncedFetchWeatherData } = useWeather()
 </script>
@@ -32,7 +33,7 @@
             >
                 <div class="weather__section">
                     <dt>Температура</dt>
-                    <dd>{{ weatherData.main.temp }}&thinsp;°C</dd>
+                    <dd>{{ formatRuNumber(weatherData.main.temp) }}&thinsp;°C</dd>
                 </div>
                 <div class="weather__section">
                     <dt>Облачность</dt>
@@ -42,7 +43,7 @@
                 </div>
                 <div class="weather__section">
                     <dt>Ветер</dt>
-                    <dd>{{ weatherData.wind.speed }}&thinsp;м/c</dd>
+                    <dd>{{ formatRuNumber(weatherData.wind.speed) }}&thinsp;м/c</dd>
                 </div>
             </dl>
             <p v-else>Данные не найдены.</p>
