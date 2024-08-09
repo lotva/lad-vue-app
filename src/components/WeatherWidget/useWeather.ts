@@ -1,27 +1,24 @@
 import { ref, watch } from 'vue'
+import { useWeatherStore } from '@/stores/weatherStore'
+
 import { debounce } from '@/shared/lib/utils/debounce'
 
 import axios from 'axios'
-
 const API_KEY = '9ea1b8e6e8a329326dde2168fd5ce137'
 
 export function useWeather() {
+    const weatherStore = useWeatherStore()
+
     const city = ref<string>(localStorage.getItem('city') || '')
+    const defaultCity = 'Гродно'
+    const geo = ref<{ lat: string; lon: string }>({} as { lat: string; lon: string })
+
+    const isLoading = ref<boolean>(false)
+    const errorMessage = ref<string>('')
+
     watch(city, (newValue) => {
         localStorage.setItem('city', newValue)
     })
-    const defaultCity = 'Гродно'
-
-    const isLoading = ref<boolean>(false)
-    const geo = ref<{ lat: string; lon: string }>({} as { lat: string; lon: string })
-
-    const weatherData = ref<any>()
-    weatherData.value = JSON.parse(localStorage.getItem('weatherData') || 'null')
-    watch(weatherData, (newValue) => {
-        localStorage.setItem('weatherData', JSON.stringify(newValue))
-    })
-
-    const errorMessage = ref<string>('')
 
     const getCityPosition = async () => {
         try {
@@ -37,6 +34,10 @@ export function useWeather() {
                 return null
             }
 
+            weatherStore.setWeatherData({
+                cityName: data[0].local_names?.ru || data[0].name,
+            })
+
             geo.value = {
                 lat: data[0].lat,
                 lon: data[0].lon,
@@ -44,7 +45,6 @@ export function useWeather() {
 
             return geo.value
         } catch (err) {
-            console.log(`Ошибка при получении геопозиции: ${err}`)
             errorMessage.value = 'АПИ не ответил на запрос. Попробуйте включить ВПН.'
             return null
         }
@@ -64,7 +64,14 @@ export function useWeather() {
                     },
                 }
             )
-            weatherData.value = weather
+
+            if (weather) {
+                weatherStore.setWeatherData({
+                    temperature: weather.main.temp,
+                    description: weather.weather[0].description,
+                    windSpeed: weather.wind.speed,
+                })
+            }
         } catch (err) {
             console.log(`Ошибка при получении погоды: ${err}`)
         }
@@ -82,7 +89,7 @@ export function useWeather() {
             if (position) {
                 await getCityWeather(position)
             } else {
-                weatherData.value = null
+                weatherStore.clearWeatherData()
             }
         } finally {
             isLoading.value = false
@@ -96,7 +103,6 @@ export function useWeather() {
         errorMessage,
         city,
         defaultCity,
-        weatherData,
         debouncedFetchWeatherData,
     }
 }
