@@ -1,3 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    import AppRoutes from '@/components/AppRoutes.vue'
+</script>
 
-<template></template>
+<template>
+    <AppRoutes class="main__section"></AppRoutes>
+</template>
