@@ -1,5 +1,9 @@
 # lad-vue-app
 
+[![Prettier](https://github.com/lotva/lad-vue-app/actions/workflows/prettier.yaml/badge.svg)](https://github.com/lotva/lad-vue-app/actions/workflows/prettier.yaml)
+[![Stylelint](https://github.com/lotva/lad-vue-app/actions/workflows/stylelint.yaml/badge.svg)](https://github.com/lotva/lad-vue-app/actions/workflows/stylelint.yaml)
+[![ESLint](https://github.com/lotva/lad-vue-app/actions/workflows/eslint.yaml/badge.svg)](https://github.com/lotva/lad-vue-app/actions/workflows/eslint.yaml)
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
