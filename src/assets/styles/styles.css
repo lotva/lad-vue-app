@@ -12,4 +12,5 @@
 
 /* Utils */
 
+@import 'utils/visually-hidden.css';
 @import 'utils/note.css';
