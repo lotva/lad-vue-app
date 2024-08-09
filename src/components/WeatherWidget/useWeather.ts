@@ -1,4 +1,6 @@
 import { ref, watch } from 'vue'
+import { debounce } from '@/shared/lib/utils/debounce'
+
 import axios from 'axios'
 
 const API_KEY = '9ea1b8e6e8a329326dde2168fd5ce137'
@@ -78,10 +80,12 @@ export function useWeather() {
         }
     }
 
+    const debouncedFetchWeatherData = debounce(fetchWeatherData, 500)
+
     return {
         isLoading,
         city,
         weatherData,
-        fetchWeatherData,
+        debouncedFetchWeatherData,
     }
 }
