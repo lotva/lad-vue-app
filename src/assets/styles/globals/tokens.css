@@ -11,7 +11,7 @@
 
     --color-background--page: 185 255 185;
     --color-background--surface: 255 255 255;
-    --color-highlight: var(--color-text) / 0.05;
+    --color-highlight: 242 242 242;
     --color-text: 0 0 0;
     --color-accent: var(--color-text);
     --color-note: var(--color-text);
@@ -32,6 +32,7 @@
     :root {
         --color-background--page: 32 33 36;
         --color-background--surface: 22 22 22;
+        --color-highlight: var(--color-background--page);
         --color-accent: 211 211 211;
         --color-text: 191 191 191;
         --color-note: 117 117 117;

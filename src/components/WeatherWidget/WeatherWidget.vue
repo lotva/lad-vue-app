@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import { useWeather } from './useWeather'
 
-    const { city, weatherData, debouncedFetchWeatherData } = useWeather()
+    const { city, weatherData, isLoading, debouncedFetchWeatherData } = useWeather()
 </script>
 
 <template>
@@ -12,7 +12,8 @@
         >
             <input
                 v-model="city"
-                class="weather__input"
+                :class="{ 'gradient-box--active': isLoading }"
+                class="weather__input gradient-box"
                 type="text"
                 placeholder="Гродно"
                 @input="debouncedFetchWeatherData"
@@ -108,5 +109,41 @@
         display: flex;
         flex-direction: column;
         row-gap: var(--gap);
+    }
+
+    /* Gradient Box */
+
+    .gradient-box {
+        border: 4px solid transparent;
+        border-radius: 9px;
+
+        &:focus-visible {
+            border-color: rgb(var(--link-color));
+            outline: 0;
+        }
+    }
+
+    .gradient-box--active {
+        &:focus-visible {
+            background:
+                linear-gradient(rgb(var(--color-highlight)), rgb(var(--color-highlight)))
+                    padding-box,
+                linear-gradient(var(--angle), rgb(var(--link-color)), rgb(var(--color-highlight)))
+                    border-box;
+            border-color: transparent;
+            animation: 1.5s rotate linear infinite;
+        }
+    }
+
+    @keyframes rotate {
+        to {
+            --angle: 360deg;
+        }
+    }
+
+    @property --angle {
+        inherits: false;
+        initial-value: 0deg;
+        syntax: '<angle>';
     }
 </style>
