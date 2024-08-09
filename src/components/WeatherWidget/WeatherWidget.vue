@@ -1,3 +1,9 @@
+<script setup lang="ts">
+    import { useWeather } from './useWeather'
+
+    const { city, weatherData, debouncedFetchWeatherData } = useWeather()
+</script>
+
 <template>
     <section class="weather">
         <form
@@ -5,28 +11,40 @@
             @submit.prevent=""
         >
             <input
+                v-model="city"
                 class="weather__input"
                 type="text"
                 placeholder="Гродно"
+                @input="debouncedFetchWeatherData"
             />
-            <button>Узнать</button>
+            <button
+                class="visually-hidden"
+                @click="debouncedFetchWeatherData"
+            >
+                Узнать
+            </button>
         </form>
         <div class="weather__meta">
-            <dl class="weather__list">
+            <dl
+                v-if="weatherData"
+                class="weather__list"
+            >
                 <div class="weather__section">
                     <dt>Температура</dt>
-                    <dd></dd>
+                    <dd>{{ weatherData.main.temp }}&thinsp;°C</dd>
                 </div>
                 <div class="weather__section">
                     <dt>Облачность</dt>
-                    <dd></dd>
+                    <dd>
+                        {{ weatherData.weather[0].description }}
+                    </dd>
                 </div>
                 <div class="weather__section">
                     <dt>Ветер</dt>
-                    <dd></dd>
+                    <dd>{{ weatherData.wind.speed }}&thinsp;м/c</dd>
                 </div>
             </dl>
-            <p>Данные не найдены.</p>
+            <p v-else>Данные не найдены.</p>
         </div>
     </section>
 </template>
