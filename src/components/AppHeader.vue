@@ -1,12 +1,12 @@
 <script setup lang="ts">
     import AppMenu from './AppMenu.vue'
-    import { WeatherInline } from './WeatherWidget'
+    import { WeatherAside } from './WeatherWidget'
 </script>
 
 <template>
     <header class="header">
         <AppMenu></AppMenu>
-        <WeatherInline></WeatherInline>
+        <WeatherAside></WeatherAside>
     </header>
 </template>
 

@@ -1,4 +1,4 @@
 import WeatherWidget from './WeatherWidget.vue'
-import WeatherInline from './WeatherInline.vue'
+import WeatherAside from './WeatherAside.vue'
 
-export { WeatherWidget, WeatherInline }
+export { WeatherWidget, WeatherAside }
