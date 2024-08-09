@@ -1,10 +1,9 @@
 {
-    "$schema": "https://json.schemastore.org/prettierrc",
-    "vueIndentScriptAndStyle": true,
-    "singleAttributePerLine": true,
-    "semi": false,
-    "tabWidth": 4,
-    "singleQuote": true,
-    "printWidth": 100,
-    "trailingComma": "es5"
+  "$schema": "https://json.schemastore.org/prettierrc",
+  "vueIndentScriptAndStyle": true,
+  "singleAttributePerLine": true,
+  "semi": false,
+  "singleQuote": true,
+  "printWidth": 100,
+  "trailingComma": "es5"
 }
