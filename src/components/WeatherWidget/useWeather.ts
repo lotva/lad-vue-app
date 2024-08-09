@@ -6,10 +6,11 @@ import axios from 'axios'
 const API_KEY = '9ea1b8e6e8a329326dde2168fd5ce137'
 
 export function useWeather() {
-    const city = ref<string>(localStorage.getItem('city') || 'Москва')
+    const city = ref<string>(localStorage.getItem('city') || '')
     watch(city, (newValue) => {
         localStorage.setItem('city', newValue)
     })
+    const defaultCity = 'Гродно'
 
     const isLoading = ref<boolean>(false)
     const geo = ref<{ lat: string; lon: string }>({} as { lat: string; lon: string })
@@ -67,7 +68,12 @@ export function useWeather() {
     }
 
     const fetchWeatherData = async () => {
+        if (!city.value) {
+            return
+        }
+
         isLoading.value = true
+
         try {
             const position = await getCityPosition()
             if (position) {
@@ -85,6 +91,7 @@ export function useWeather() {
     return {
         isLoading,
         city,
+        defaultCity,
         weatherData,
         debouncedFetchWeatherData,
     }

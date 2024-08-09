@@ -2,7 +2,9 @@
     import { useWeather } from './useWeather'
     import { formatRuNumber } from '@/shared/lib/utils/formatRuNumber'
 
-    const { city, weatherData, isLoading, debouncedFetchWeatherData } = useWeather()
+    const { city, defaultCity, weatherData, isLoading, debouncedFetchWeatherData } = useWeather()
+
+    debouncedFetchWeatherData()
 </script>
 
 <template>
@@ -16,7 +18,7 @@
                 :class="{ 'gradient-box--active': isLoading }"
                 class="weather__input gradient-box"
                 type="text"
-                placeholder="Гродно"
+                :placeholder="defaultCity"
                 @input="debouncedFetchWeatherData"
             />
             <button
@@ -125,6 +127,7 @@
     }
 
     .gradient-box--active {
+        &,
         &:focus-visible {
             background:
                 linear-gradient(rgb(var(--color-highlight)), rgb(var(--color-highlight)))
@@ -132,7 +135,7 @@
                 linear-gradient(var(--angle), rgb(var(--link-color)), rgb(var(--color-highlight)))
                     border-box;
             border-color: transparent;
-            animation: 1.5s rotate linear infinite;
+            animation: 1s rotate linear infinite;
         }
     }
 
