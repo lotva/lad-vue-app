@@ -18,4 +18,18 @@ const router = createRouter({
     ],
 })
 
+router.beforeEach((to) => {
+    const { title, description } = to.meta as { title?: string; description?: string }
+
+    const defaultTitle = 'Вью-блог'
+    const defaultDescription = 'Приложение на Вью с разделами «Погода» и «Статьи»'
+
+    document.title = title || defaultTitle
+
+    const descriptionElement = document.querySelector('head meta[name="description"]')
+    if (descriptionElement) {
+        descriptionElement.setAttribute('content', description || defaultDescription)
+    }
+})
+
 export default router
