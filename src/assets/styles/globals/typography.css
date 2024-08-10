@@ -124,6 +124,10 @@ dd {
 
 input {
     inline-size: 16em;
+}
+
+input,
+textarea {
     max-inline-size: 100%;
     padding: calc(var(--gap) / 2) var(--gap);
 
