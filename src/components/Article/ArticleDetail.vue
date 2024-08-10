@@ -179,7 +179,10 @@
     }
 
     .article-detail__summary {
+        --leading: 1;
+
         font-size: 2em;
+        line-height: var(--leading);
         letter-spacing: -0.03em;
     }
 
