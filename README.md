@@ -1,68 +1,69 @@
-# lad-vue-app
+# Приложение на Вью для «Академии Лад»
 
 [![Prettier](https://github.com/lotva/lad-vue-app/actions/workflows/prettier.yaml/badge.svg)](https://github.com/lotva/lad-vue-app/actions/workflows/prettier.yaml)
 [![Stylelint](https://github.com/lotva/lad-vue-app/actions/workflows/stylelint.yaml/badge.svg)](https://github.com/lotva/lad-vue-app/actions/workflows/stylelint.yaml)
 [![ESLint](https://github.com/lotva/lad-vue-app/actions/workflows/eslint.yaml/badge.svg)](https://github.com/lotva/lad-vue-app/actions/workflows/eslint.yaml)
 
-This template should help get you started developing with Vue 3 in Vite.
+Показывает погоду и список статей.
 
-## Recommended IDE Setup
+## Погода
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Компонент погоды основан на том, что показано на мастер-классе. Логика работы с АПИ вынесена в Composable, сами показатели погоды лежат в `weatherStore` Pinia. Глобальное хранилище используется, чтобы выводить погоду в хедер.
 
-## Type Support for `.vue` Imports in TS
+## Статьи
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+Статьи описаны прямо в хранилище — это набор строк с уникальным айди, который лежит в localStorage. Статьи можно редактировать и удалять.
 
-## Customize configuration
+В дальнейшем будет удобно перевести текст статей в человекочитаемый формат типа Маркдауна. Плюс к тому — реализовать функцию добавления.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Навигация между основными страницами сделана с помощью `vue-router`.
 
-## Project Setup
+## Технологии
 
-```sh
-npm install
+### Как развернуть сайт локально
+
+Что нужно сделать:
+
+1. Установить зависимости: `npm i`.
+2. Запустить локальный сервер: `npm run dev`.
+
+Сайт будет пересобираться при редактировании кода.
+
+### Форматирование и линтеры
+
+О поддержании порядка в форматировании думать не надо, оно само. Новый код приводится к единому стилю во время коммита через `simple-git-hooks` и [`nano-staged`](https://github.com/usmanyunusov/nano-staged).
+
+### Тесты
+
+Юнит-тестами покрыт виджет погоды и вспомогательные утилиты. Запустить: `npm run test:unit`. (В дальнейшем важно дописать тесты для работы хранилища и компонентов статьи.)
+
+### Работа со стилями
+
+Стили собирает и обрабатывает [Lightning CSS](https://lightningcss.dev).
+
+Методология — [БЭМ в варианте Two Dashes](https://ru.bem.info/methodology/naming-convention/#стиль-two-dashes):
+
+```css
+.block-name__element-name--modificator {
+}
 ```
 
-### Compile and Hot-Reload for Development
+БЭМ используется только для именования стилей и комбинируется со `scoped`-подходом Вью.
 
-```sh
-npm run dev
+Используется современный синтаксис медиазапросов и ЦСС-нестинг:
+
+```css
+.featured-articles {
+    display: grid;
+
+    @media (width >= 810px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
 ```
 
-### Type-Check, Compile and Minify for Production
+ЦСС-правила группируются по смыслу через [`stylelint-config-clean-order`](https://github.com/kutsan/stylelint-config-clean-order).
 
-```sh
-npm run build
-```
+### ИДЕ
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
-
-```sh
-# Install browsers for the first run
-npx playwright install
-
-# When testing on CI, must build the project first
-npm run build
-
-# Runs the end-to-end tests
-npm run test:e2e
-# Runs the tests only on Chromium
-npm run test:e2e -- --project=chromium
-# Runs the tests of a specific file
-npm run test:e2e -- tests/example.spec.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Используйте [VSCode](https://code.visualstudio.com/) и [расширение Vue](https://marketplace.visualstudio.com/items?itemName=Vue.volar).
