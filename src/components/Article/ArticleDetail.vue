@@ -12,10 +12,8 @@
     const router = useRouter()
 
     const article = ref<Article | null>(null)
-
     const editMode = ref<boolean>(false)
-
-    const id = computed<number | undefined>(() => article.value?.id)
+    defineProps<{ id: number }>()
 
     const formattedDate = computed<string | undefined>(() => {
         if (article.value?.date) {
@@ -46,13 +44,13 @@
         editMode.value = true
     }
 
-    async function deleteArticleById(id) {
+    async function deleteArticleById(id: number) {
         await articlesStore.deleteArticle(id)
 
         router.push('/articles')
     }
 
-    function saveChanges(id) {
+    function saveChanges(id: number) {
         articlesStore.editArticle(id, {
             title: title.value,
             content: content.value,
