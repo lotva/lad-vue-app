@@ -19,7 +19,7 @@
     </main>
 </template>
 
-<style scoped>
+<style>
     .main {
         max-inline-size: 1200px;
         min-block-size: 80vb;
