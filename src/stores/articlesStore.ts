@@ -39,10 +39,11 @@ export const useArticlesStore = defineStore({
     id: 'articlesStore',
 
     state: () => {
-        const articlesString = localStorage.getItem('articles')
+        let articlesString = localStorage.getItem('articles')
 
         if (!articlesString) {
             initializeData()
+            articlesString = localStorage.getItem('articles')
         }
 
         return {
