@@ -10,6 +10,9 @@ module.exports = {
         '@vue/eslint-config-typescript',
         '@vue/eslint-config-prettier/skip-formatting',
     ],
+    rules: {
+        'no-irregular-whitespace': 'off',
+    },
     overrides: [
         {
             files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],

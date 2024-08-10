@@ -4,7 +4,7 @@
     --leading: 1.35;
     --gap: calc(0.117rem + 0.343rem + (1rem * var(--leading) - 1rem));
     --left-adjustment: -0.07em;
-    --paragraph-width: 24rem;
+    --paragraph-width: 30rem;
     --font-weight: 400;
 
     /* Colors */

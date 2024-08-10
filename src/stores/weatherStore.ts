@@ -7,7 +7,7 @@ interface WeatherState {
     windSpeed?: number | null
 }
 
-export const useWeatherStore = defineStore('weather', {
+export const useWeatherStore = defineStore('weatherStore', {
     state: (): WeatherState => ({
         cityName: null,
         temperature: null,

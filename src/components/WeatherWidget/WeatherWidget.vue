@@ -113,8 +113,6 @@
         --leading: 0.95;
 
         inline-size: 100%;
-        margin-inline-start: -4px;
-
         font-size: 2em;
         letter-spacing: -0.04em;
         word-spacing: -0.02em;
