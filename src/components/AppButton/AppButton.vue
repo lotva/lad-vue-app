@@ -1,5 +1,8 @@
 <template>
-    <button class="button">
+    <button
+        class="button"
+        type="button"
+    >
         <span class="button__text">
             <slot></slot>
         </span>

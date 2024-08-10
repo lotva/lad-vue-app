@@ -23,16 +23,18 @@
                 >Населённый пункт</label
             >
             <input
+                id="city"
                 v-model="city"
+                name="city"
                 class="weather__input gradient-box"
                 :class="{ 'gradient-box--active': isLoading }"
                 type="text"
-                name="city"
                 :placeholder="defaultCity"
                 @input="debouncedFetchWeatherData"
             />
             <button
                 class="visually-hidden"
+                type="button"
                 @click="debouncedFetchWeatherData"
             >
                 Узнать
