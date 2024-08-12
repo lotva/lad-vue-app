@@ -34,7 +34,7 @@
             />
             <button
                 class="visually-hidden"
-                type="button"
+                type="submit"
                 @click="debouncedFetchWeatherData"
             >
                 Узнать
